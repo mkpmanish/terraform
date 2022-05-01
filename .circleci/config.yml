@@ -24,7 +24,7 @@ jobs:
      machine: true
      steps:
        - checkout
-       - run: docker run -v $PWD:/src -w /src --rm wata727/tflint -f json aws
+       - run: docker run -v $PWD:/src -w /src --rm wata727/tflint -f json aws | tee tflint-output.json
        - store_artifacts:
            path: tflint-output.json
            destination: tflint-artifacts
