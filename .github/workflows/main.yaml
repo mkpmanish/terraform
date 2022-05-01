@@ -33,7 +33,7 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: TFLint
-          path: tflint-output.json
+          path: output.json
         if: always()
 
   integration:
