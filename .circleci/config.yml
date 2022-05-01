@@ -20,6 +20,15 @@ jobs:
             echo "This is an integration step"
             exit 1
 
+  tflint:
+     machine: true
+     steps:
+       - checkout
+       - run: docker run -v $PWD:/src -w /src --rm wata727/tflint -f json aws
+       - store_artifacts:
+           path: tflint-output.json
+           destination: tflint-artifacts
+
   prod:
     machine: true
     steps:
@@ -30,6 +39,7 @@ workflows:
   version: 2
   terraform:
     jobs:
+      - tflint
       - build
       - test:
           requires:
